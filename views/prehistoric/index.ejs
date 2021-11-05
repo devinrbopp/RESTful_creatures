@@ -1,0 +1,8 @@
+<ul>
+    <% prehistoricCreaturesData.forEach( (prehistoricCreatures) => { %>
+        <li>
+            <%= prehistoricCreatures.type %>
+            <img src="<%= prehistoricCreatures.img_url %>" alt="<%= prehistoricCreatures.type %>">
+        </li>
+    <% }) %> 
+</ul>
