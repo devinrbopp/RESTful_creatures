@@ -67,6 +67,8 @@ router.post('/', (req, res) => {
     res.redirect('/dinosaurs') // you still need this guy here bc redirect kicks it bck to the top
 })
 
+
+// DESTROY route
 router.delete('/:idx', (req, res) => {
     let dinosaurs = fs.readFileSync('./dinosaurs.json')
     let dinoData = JSON.parse(dinosaurs)

@@ -1,8 +1,11 @@
 <ul>
-    <% prehistoricCreaturesData.forEach( (prehistoricCreatures) => { %>
+    <% prehistoricCreaturesData.forEach( (prehistoricCreatures, index) => { %>
         <li>
             <%= prehistoricCreatures.type %>
             <img src="<%= prehistoricCreatures.img_url %>" alt="<%= prehistoricCreatures.type %>">
+            <form action="/prehistoric_creatures/<%= index %>/?_method=DELETE" method="POST">
+                <input type="submit" value="Delete">
+            </form>
         </li>
     <% }) %> 
 </ul>
