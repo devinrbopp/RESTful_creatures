@@ -15,6 +15,25 @@ router.get('/new', (req, res) => {
     res.render('prehistoric/new.ejs')
 })
 
+// EDIT route
+router.get('/edit/:idx', (req, res) => {
+    let prehistoricCreatures = fs.readFileSync('./prehistoric_creatures.json')
+    let prehistoricCreaturesData = JSON.parse(prehistoricCreatures)
+    res.render('prehistoric/edit.ejs', {prehistoricCreatureId: req.params.idx, prehistoricCreature: prehistoricCreaturesData[req.params.idx]})
+})
+
+// update after editing
+router.put('/:idx', (req, res) => {
+    let prehistoricCreatures = fs.readFileSync('./prehistoric_creatures.json')
+    let prehistoricCreaturesData = JSON.parse(prehistoricCreatures)
+
+    prehistoricCreaturesData[req.params.idx].type = req.body.type
+    prehistoricCreaturesData[req.params.idx].img_url = req.body.img_url
+
+    fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(prehistoricCreaturesData))
+    res.redirect('/prehistoric_creatures')
+})
+
 // SHOW prehistoric route
 router.get('/:idx', (req, res) => {
     // get the array of dinosaurs
