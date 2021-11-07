@@ -10,6 +10,11 @@ router.get('/', (req, res) => {
     res.render('prehistoric/index', {prehistoricCreaturesData})
 })
 
+// NEW route
+router.get('/new', (req, res) => {
+    res.render('prehistoric/new.ejs')
+})
+
 // SHOW prehistoric route
 router.get('/:idx', (req, res) => {
     // get the array of dinosaurs
@@ -18,6 +23,23 @@ router.get('/:idx', (req, res) => {
     // get array index from URL pattern
     let prehistoricCreatureIndex = req.params.idx
     res.render('prehistoric/show', {myPrehistoricCreature: prehistoricCreaturesData[prehistoricCreatureIndex]})
+})
+
+
+// POST route
+router.post('/', (req, res) => {
+    // get the array
+    let prehistoricCreatures = fs.readFileSync('./prehistoric_creatures.json')
+    let prehistoricCreaturesData = JSON.parse(prehistoricCreatures)
+
+    // add new create to array
+    prehistoricCreaturesData.push(req.body)
+
+    // save data to json
+    fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(prehistoricCreaturesData))
+
+    // redirect to /prehistoric_creatures
+    res.redirect('/prehistoric_creatures')
 })
 
 // DESTROY prehistoric route

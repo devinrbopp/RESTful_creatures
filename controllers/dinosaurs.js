@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 
 // NEW route
 router.get('/new', (req, res) => {
-    res.render('dinos/new')
+    res.render('dinos/new.ejs')
 })
 
 // route for editing
