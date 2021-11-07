@@ -1,0 +1,9 @@
+body {
+    font-family: helvetica;
+    background: whitesmoke;
+}
+
+img {
+    max-width: 300px;
+    display: block;
+}
